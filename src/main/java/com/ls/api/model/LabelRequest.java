@@ -6,7 +6,7 @@ public class LabelRequest {
 
   private String script;
   private Map<String, Object> data;
-  private PrinterConfiguration printer;
+  private PrintConfiguration printer;
 
   public String getScript() {
     return script;
@@ -24,11 +24,11 @@ public class LabelRequest {
     this.data = data;
   }
 
-  public PrinterConfiguration getPrinter() {
+  public PrintConfiguration getPrinter() {
     return printer;
   }
 
-  public void setPrinter(PrinterConfiguration printer) {
+  public void setPrinter(PrintConfiguration printer) {
     this.printer = printer;
   }
 }

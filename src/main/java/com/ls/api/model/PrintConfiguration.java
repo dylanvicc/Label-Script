@@ -1,24 +1,24 @@
 package com.ls.api.model;
 
-public class PrinterConfiguration {
+public class PrintConfiguration {
 
-  private PrinterType type;
-  private PrinterTransport transport;
+  private PrintType type;
+  private PrintTransport transport;
   private String target;
 
-  public PrinterType getType() {
+  public PrintType getType() {
     return type;
   }
 
-  public void setType(PrinterType type) {
+  public void setType(PrintType type) {
     this.type = type;
   }
 
-  public PrinterTransport getTransport() {
+  public PrintTransport getTransport() {
     return transport;
   }
 
-  public void setTransport(PrinterTransport transport) {
+  public void setTransport(PrintTransport transport) {
     this.transport = transport;
   }
 

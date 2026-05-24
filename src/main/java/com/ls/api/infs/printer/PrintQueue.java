@@ -1,11 +1,11 @@
-package com.ls.api.infs.queue;
+package com.ls.api.infs.printer;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.stereotype.Component;
 
-import com.ls.api.model.PrinterJob;
+import com.ls.api.model.PrintJob;
 
 @Component
 public class PrintQueue {
@@ -13,7 +13,7 @@ public class PrintQueue {
   /**
    * Houses pending jobs to be printed in a thread safe collection.
    */
-  private final ConcurrentLinkedQueue<PrinterJob> queue = new ConcurrentLinkedQueue<>();
+  private final ConcurrentLinkedQueue<PrintJob> queue = new ConcurrentLinkedQueue<>();
 
   /**
    * Utilized where {@link ConcurrentLinkedQueue} size must be known cheaply and
@@ -27,7 +27,7 @@ public class PrintQueue {
    */
   private final AtomicInteger total = new AtomicInteger(0);
 
-  public void enqueue(PrinterJob job) {
+  public void enqueue(PrintJob job) {
 
     if (job == null)
       throw new IllegalArgumentException("Cannot handle null value.");
@@ -37,9 +37,9 @@ public class PrintQueue {
     total.incrementAndGet();
   }
 
-  public PrinterJob dequeue() {
+  public PrintJob dequeue() {
 
-    final PrinterJob job = queue.poll();
+    final PrintJob job = queue.poll();
 
     if (job != null)
       size.decrementAndGet();

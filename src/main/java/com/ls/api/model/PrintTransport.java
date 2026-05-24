@@ -1,10 +1,8 @@
 package com.ls.api.model;
 
-public enum PrinterTransport {
+public enum PrintTransport {
   NETWORK, 
-  USB, 
   WINDOWS_QUEUE, 
   CLOUD, 
-  SERIAL, 
-  LOCAL_ID
+  WIRED
 }

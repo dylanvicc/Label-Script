@@ -1,4 +1,4 @@
-package com.ls.api.engine.transpiler.zpl;
+package com.ls.api.engine.transpile.zpl;
 
 import com.ls.api.engine.LabelScriptEngineException;
 import com.ls.api.engine.ast.*;
@@ -19,8 +19,8 @@ import com.ls.api.engine.ast.node.impl.StatementNode;
 import com.ls.api.engine.ast.node.impl.TextBlockCommandNode;
 import com.ls.api.engine.ast.node.impl.TextCommandNode;
 import com.ls.api.engine.ast.node.impl.VariableExpression;
-import com.ls.api.engine.transpiler.Transpiler;
-import com.ls.api.model.PrinterType;
+import com.ls.api.engine.transpile.Transpiler;
+import com.ls.api.model.PrintType;
 
 import org.springframework.stereotype.Component;
 
@@ -31,8 +31,8 @@ import java.util.Map;
 public class ZplTranspiler implements Transpiler {
 
   @Override
-  public PrinterType getType() {
-    return PrinterType.ZPL;
+  public PrintType getType() {
+    return PrintType.ZPL;
   }
 
   @Override

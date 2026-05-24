@@ -2,14 +2,14 @@ package com.ls.api.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-public enum PrinterType {
+public enum PrintType {
   ZPL("zpl"), 
   EPL("epl"), 
   ESCPOS("escpos");
 
   private final String name;
 
-  PrinterType(String name) {
+  PrintType(String name) {
     this.name = name;
   }
 
@@ -18,8 +18,8 @@ public enum PrinterType {
   }
 
   @JsonCreator
-  public static PrinterType from(String raw) {
-      for (PrinterType type : values()) {
+  public static PrintType from(String raw) {
+      for (PrintType type : values()) {
           if (type.name.equalsIgnoreCase(raw)) {
               return type;
           }

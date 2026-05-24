@@ -2,8 +2,8 @@ package com.ls.api.service.impl;
 
 import com.ls.api.model.LabelRequest;
 import com.ls.api.model.LabelResponse;
-import com.ls.api.model.PrinterConfiguration;
-import com.ls.api.model.PrinterJob;
+import com.ls.api.model.PrintConfiguration;
+import com.ls.api.model.PrintJob;
 import com.ls.api.service.LabelService;
 import com.ls.api.engine.LabelScriptEngine;
 import com.ls.api.infs.printer.PrintDispatcher;
@@ -40,8 +40,8 @@ public class DefaultLabelService implements LabelService {
     try {
 
       final String output = engine.execute(request.getScript(), request.getData(), request.getPrinter().getType());
-      final PrinterConfiguration configuration = request.getPrinter();
-      final PrinterJob job = new PrinterJob(request.getScript(), request.getData(), configuration);
+      final PrintConfiguration configuration = request.getPrinter();
+      final PrintJob job = new PrintJob(request.getScript(), request.getData(), configuration);
 
       dispatcher.dispatch(job, output);
 

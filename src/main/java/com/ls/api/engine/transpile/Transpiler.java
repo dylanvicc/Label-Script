@@ -1,19 +1,19 @@
-package com.ls.api.engine.transpiler;
+package com.ls.api.engine.transpile;
 
 import java.util.Map;
 
 import com.ls.api.engine.LabelScriptEngineException;
 import com.ls.api.engine.ast.node.impl.DocumentNode;
-import com.ls.api.model.PrinterType;
+import com.ls.api.model.PrintType;
 
 public interface Transpiler {
 
   /**
-   * Returns the {@link PrinterType} for this implementation.
+   * Returns the {@link PrintType} for this implementation.
    * 
    * @return The returned type.
    */
-  PrinterType getType();
+  PrintType getType();
 
   /**
    * 

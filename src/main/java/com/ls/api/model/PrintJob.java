@@ -4,14 +4,14 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.UUID;
 
-public class PrinterJob implements Serializable {
+public class PrintJob implements Serializable {
 
   private final String id;
   private final String script;
   private final Map<String, Object> data;
-  private final PrinterConfiguration configuration;
+  private final PrintConfiguration configuration;
 
-  public PrinterJob(String script, Map<String, Object> data, PrinterConfiguration configuration) {
+  public PrintJob(String script, Map<String, Object> data, PrintConfiguration configuration) {
     this.id = UUID.randomUUID().toString();
     this.script = script;
     this.data = data;
@@ -30,7 +30,7 @@ public class PrinterJob implements Serializable {
     return data;
   }
 
-  public PrinterConfiguration getPrinterConfiguration() {
+  public PrintConfiguration getPrinterConfiguration() {
     return configuration;
   }
 }

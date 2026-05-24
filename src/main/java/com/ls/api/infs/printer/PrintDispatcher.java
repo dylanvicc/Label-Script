@@ -4,58 +4,60 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import com.ls.api.model.PrinterJob;
-import com.ls.api.model.PrinterTransport;
-import com.ls.api.model.PrinterType;
+import com.ls.api.infs.printer.task.PrintTransportTask;
+import com.ls.api.infs.printer.task.impl.CloudPrintTransportTask;
+import com.ls.api.infs.printer.task.impl.NetworkPrintTransportTask;
+import com.ls.api.infs.printer.task.impl.WindowsQueuePrintTransportTask;
+import com.ls.api.infs.printer.task.impl.WiredPrintTransportTask;
+import com.ls.api.model.PrintJob;
+import com.ls.api.model.PrintTransport;
+import com.ls.api.model.PrintType;
 
 @Component
 public class PrintDispatcher {
 
   private static final Logger logger = LoggerFactory.getLogger(PrintDispatcher.class);
 
-  public void dispatch(PrinterJob job, String payload) {
+  public boolean dispatch(PrintJob job, String payload) {
 
-    if (job == null) {
+    if (job == null) 
       throw new IllegalArgumentException("Job cannot be null.");
-    }
 
-    if (payload == null) {
+    if (payload == null)
       throw new IllegalArgumentException("Payload cannot be null.");
-    }
 
-    final PrinterType type = job.getPrinterConfiguration().getType();
-    final PrinterTransport transport = job.getPrinterConfiguration().getTransport();
+    final PrintType type = job.getPrinterConfiguration().getType();
+    final PrintTransport transport = job.getPrinterConfiguration().getTransport();
     final String target = job.getPrinterConfiguration().getTarget();
 
     logger.info("Dispatching print job {} to '{}' via {} ({}).", job.getId(), target, transport, type);
-    
+
     try {
       switch (transport) {
 
       case NETWORK:
-        throw new UnsupportedOperationException("NETWORK transport is not yet implemented.");
-
-      case USB:
-        throw new UnsupportedOperationException("USB transport is not yet implemented.");
+        return new NetworkPrintTransportTask(type, transport, target, payload).send();
 
       case WINDOWS_QUEUE:
-        throw new UnsupportedOperationException("WINDOWS_QUEUE transport is not yet implemented.");
+        return new WindowsQueuePrintTransportTask(type, transport, target, payload).send();
 
       case CLOUD:
-        throw new UnsupportedOperationException("CLOUD transport is not yet implemented.");
+        return new CloudPrintTransportTask(type, transport, target, payload).send();
 
-      case SERIAL:
-        throw new UnsupportedOperationException("SERIAL transport is not yet implemented.");
+      case WIRED:
+        return new WiredPrintTransportTask(type, transport, target, payload).send();
 
-      case LOCAL_ID:
-        throw new UnsupportedOperationException("LOCAL_ID transport is not yet implemented.");
       }
     } catch (UnsupportedOperationException exception) {
-      logger.error("Failed to dispatch print job {} to '{}' via {} ({}): {}", job.getId(), target, transport, type, exception.getMessage());
+      logger.error("Failed to dispatch print job {} to '{}' via {} ({}): {}", job.getId(), target, transport, type,
+          exception.getMessage());
       throw exception;
     } catch (Exception exception) {
-      logger.error("Failed to dispatch print job {} to '{}' via {} ({}).", job.getId(), target, transport, type, exception);
+      logger.error("Failed to dispatch print job {} to '{}' via {} ({}).", job.getId(), target, transport, type,
+          exception);
       throw exception;
     }
+
+    return false;
   }
 }

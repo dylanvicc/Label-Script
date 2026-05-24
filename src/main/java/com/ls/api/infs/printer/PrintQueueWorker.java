@@ -1,4 +1,4 @@
-package com.ls.api.infs.queue;
+package com.ls.api.infs.printer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,8 +6,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.ls.api.engine.LabelScriptEngine;
-import com.ls.api.infs.printer.PrintDispatcher;
-import com.ls.api.model.PrinterJob;
+import com.ls.api.model.PrintJob;
 
 @Component
 public class PrintQueueWorker {
@@ -28,7 +27,7 @@ public class PrintQueueWorker {
   public void drain() {
     while (!queue.isEmpty()) {
 
-      final PrinterJob job = queue.dequeue();
+      final PrintJob job = queue.dequeue();
 
       if (job == null)
         break;
