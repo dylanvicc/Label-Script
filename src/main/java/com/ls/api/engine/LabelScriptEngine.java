@@ -12,26 +12,22 @@ import java.util.Map;
 @Component
 public class LabelScriptEngine {
 
-  /**
-   *
-   */
   private final List<Transpiler> transpilers;
 
-  /**
-   * Creates a new instance of this class file.
-   * @param transpilers
-   */
   public LabelScriptEngine(List<Transpiler> transpilers) {
     this.transpilers = transpilers;
   }
 
   /**
+   * Performs the translation of the label script code to the appropriate code
+   * that is recognizable by the printer.
    * 
-   * @param script
-   * @param data
-   * @param type
-   * @return
-   * @throws LabelScriptEngineException
+   * @param script The label script code to be translated.
+   * @param data   The external values to be utilized within this script.
+   * @param type   The type of printer.
+   * @return The script content that has been translated.
+   * @throws LabelScriptEngineException The exception thrown if an error occurs
+   *                                    within the engine.
    */
   public String execute(String script, Map<String, Object> data, PrinterType type) throws LabelScriptEngineException {
 

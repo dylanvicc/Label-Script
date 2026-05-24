@@ -13,11 +13,6 @@ public class PrintDispatcher {
 
   private static final Logger logger = LoggerFactory.getLogger(PrintDispatcher.class);
 
-  /**
-   * 
-   * @param job
-   * @param payload
-   */
   public void dispatch(PrinterJob job, String payload) {
 
     if (job == null) {

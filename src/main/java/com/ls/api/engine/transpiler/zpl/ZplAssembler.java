@@ -3,39 +3,41 @@ package com.ls.api.engine.transpiler.zpl;
 public class ZplAssembler {
 
   /**
-   *
+   * A mutable sequence of characters. Appends label content.
    */
   private final StringBuilder builder = new StringBuilder();
 
   /**
-   * Appends the characters to introduce a new label.
+   * Appends the character sequence to introduce a new label.
    */
   public void beginLabel() {
     builder.append("^XA\n");
   }
 
   /**
-   * Appends the characters to terminate a label.
+   * Appends the character sequence to terminate a label.
    */
   public void endLabel() {
     builder.append("^XZ");
   }
 
   /**
-   * @param x
-   * @param y
-   * @param text
+   * Draws a line of text.
+   * @param x The X coordinate of the character sequence.
+   * @param y The Y coordinate of the character sequence.
+   * @param text The text to draw.
    */
   public void drawText(int x, int y, String text) {
     builder.append("^FO").append(x).append(",").append(y).append("^ADN,36,20^FD").append(escape(text)).append("^FS\n");
   }
 
   /**
-   * @param x
-   * @param y
-   * @param width
-   * @param height
-   * @param thickness
+   * Draws a rectangle.
+   * @param x The X coordinate of the rectangle.
+   * @param y The Y coordinate of the rectangle.
+   * @param width The width of the rectangle.
+   * @param height The height of the rectangle.
+   * @param thickness The thickness of the border lines.
    */
   public void drawBox(int x, int y, int width, int height, int thickness) {
     builder.append("^FO").append(x).append(",").append(y).append("^GB").append(width).append(",").append(height)

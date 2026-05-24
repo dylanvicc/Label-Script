@@ -19,8 +19,9 @@ public interface Transpiler {
    * 
    * @param document
    * @param data
-   * @return
-   * @throws LabelScriptEngineException
+   * @return The translated script content.
+   * @throws LabelScriptEngineException The exception thrown if an error is
+   *                                    encountered within the engine.
    */
   String transpile(DocumentNode document, Map<String, Object> data) throws LabelScriptEngineException;
 }
