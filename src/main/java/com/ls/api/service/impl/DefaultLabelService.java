@@ -6,7 +6,7 @@ import com.ls.api.model.PrinterConfiguration;
 import com.ls.api.model.PrinterJob;
 import com.ls.api.service.LabelService;
 import com.ls.api.engine.LabelScriptEngine;
-import com.ls.api.infastructure.printer.PrintDispatcher;
+import com.ls.api.infs.printer.PrintDispatcher;
 
 import org.springframework.stereotype.Service;
 

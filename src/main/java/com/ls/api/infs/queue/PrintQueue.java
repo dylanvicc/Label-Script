@@ -1,4 +1,4 @@
-package com.ls.api.infastructure.queue;
+package com.ls.api.infs.queue;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;

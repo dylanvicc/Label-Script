@@ -1,4 +1,4 @@
-package com.ls.api.infastructure.queue;
+package com.ls.api.infs.queue;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,7 +6,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.ls.api.engine.LabelScriptEngine;
-import com.ls.api.infastructure.printer.PrintDispatcher;
+import com.ls.api.infs.printer.PrintDispatcher;
 import com.ls.api.model.PrinterJob;
 
 @Component
