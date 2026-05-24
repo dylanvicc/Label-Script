@@ -150,12 +150,12 @@ public class ZplAssembler {
   }
 
   /**
-   * 
-   * @param x1
-   * @param y1
-   * @param x2
-   * @param y2
-   * @param thickness
+   * Draws a single two-dimensional line.
+   * @param x1 The starting X coordinate.
+   * @param y1 The starting Y coordinate.
+   * @param x2 The ending X coordinate.
+   * @param y2 The ending Y coordinate.
+   * @param thickness The thickness of the line.
    */
   public void drawLine(int x1, int y1, int x2, int y2, int thickness) {
 
@@ -181,9 +181,10 @@ public class ZplAssembler {
   }
 
   /**
-   * @param x
-   * @param y
-   * @param name
+   * Draws an image.
+   * @param x The X coordinate of the image.
+   * @param y The Y coordinate of the image.
+   * @param name The name of the image.
    */
   public void drawImage(int x, int y, String name) {
     builder.append("^FO").append(x).append(",").append(y).append("^XG").append(name).append(",1,1^FS\n");

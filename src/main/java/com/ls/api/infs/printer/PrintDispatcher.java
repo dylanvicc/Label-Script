@@ -20,7 +20,7 @@ public class PrintDispatcher {
 
   public boolean dispatch(PrintJob job, String payload) {
 
-    if (job == null) 
+    if (job == null)
       throw new IllegalArgumentException("Job cannot be null.");
 
     if (payload == null)
@@ -36,16 +36,16 @@ public class PrintDispatcher {
       switch (transport) {
 
       case NETWORK:
-        return new NetworkPrintTransportTask(type, transport, target, payload).send();
+        return send(new NetworkPrintTransportTask(type, transport, target, payload));
 
       case WINDOWS_QUEUE:
-        return new WindowsQueuePrintTransportTask(type, transport, target, payload).send();
+        return send(new WindowsQueuePrintTransportTask(type, transport, target, payload));
 
       case CLOUD:
-        return new CloudPrintTransportTask(type, transport, target, payload).send();
+        return send(new CloudPrintTransportTask(type, transport, target, payload));
 
       case WIRED:
-        return new WiredPrintTransportTask(type, transport, target, payload).send();
+        return send(new WiredPrintTransportTask(type, transport, target, payload));
 
       }
     } catch (UnsupportedOperationException exception) {
@@ -59,5 +59,11 @@ public class PrintDispatcher {
     }
 
     return false;
+  }
+
+  private boolean send(PrintTransportTask task) {
+    if (task == null)
+      return false;
+    return task.send();
   }
 }
