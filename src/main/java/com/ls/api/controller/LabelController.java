@@ -16,16 +16,16 @@ public class LabelController {
   private final LabelService service;
 
   public LabelController(LabelService labelService) {
-      this.service = labelService;
+    this.service = labelService;
   }
 
   @PostMapping("/render")
   public LabelResponse render(@RequestBody LabelRequest request) {
-      return service.render(request);
+    return service.render(request);
   }
 
   @PostMapping("/print")
   public LabelResponse print(@RequestBody LabelRequest request) {
-      return service.print(request);
+    return service.print(request);
   }
 }

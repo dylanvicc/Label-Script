@@ -19,10 +19,10 @@ public class LabelScriptEngine {
   }
 
   /**
-   * Performs the translation of the label-script code to the appropriate printer
-   * recognized code.
+   * Performs the translation of the label script code to the appropriate printer
+   * accepted code.
    * 
-   * @param script The label-script code to be translated.
+   * @param script The label script code to be translated.
    * @param data   The external values to be utilized within this script.
    * @param type   The type of printer.
    * @return The script content that has been translated.

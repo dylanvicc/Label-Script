@@ -50,9 +50,12 @@ public class LabelScriptParser {
   private int index;
 
   /**
-   * @param script
-   * @return
-   * @throws LabelScriptEngineException
+   * Parses a label script into a document node. Extracts label metadata and all
+   * executable statements.
+   * 
+   * @param script The raw label script.
+   * @return The parsed document node.
+   * @throws LabelScriptEngineException Thrown when parsing fails.
    */
   public DocumentNode parse(String script) throws LabelScriptEngineException {
 
@@ -103,9 +106,12 @@ public class LabelScriptParser {
   }
 
   /**
-   * @param line
-   * @return
-   * @throws LabelScriptEngineException
+   * Parses a command statement from a line. Delegates parsing based on the
+   * command keyword.
+   * 
+   * @param line The raw command line.
+   * @return The parsed command node.
+   * @throws LabelScriptEngineException Thrown when the command is unknown.
    */
   private CommandNode parseCommand(String line) throws LabelScriptEngineException {
 
@@ -137,8 +143,11 @@ public class LabelScriptParser {
   }
 
   /**
-   * @return
-   * @throws LabelScriptEngineException
+   * Parses an if statement and its nested branches. Supports optional else
+   * blocks.
+   * 
+   * @return The parsed if statement node.
+   * @throws LabelScriptEngineException Thrown when parsing fails.
    */
   private IfStatementNode parseIf() throws LabelScriptEngineException {
 
@@ -160,8 +169,11 @@ public class LabelScriptParser {
   }
 
   /**
-   * @return
-   * @throws LabelScriptEngineException
+   * Parses a nested statement block. Continues until the closing brace is
+   * encountered.
+   * 
+   * @return The parsed statement list.
+   * @throws LabelScriptEngineException Thrown when parsing fails.
    */
   private List<StatementNode> parseBlock() throws LabelScriptEngineException {
 
@@ -188,10 +200,12 @@ public class LabelScriptParser {
   }
 
   /**
+   * Parses a text block command. Extracts position, formatting, and text
+   * expression data.
    * 
-   * @param line
-   * @return
-   * @throws LabelScriptEngineException
+   * @param line The raw command line.
+   * @return The parsed text block command node.
+   * @throws LabelScriptEngineException Thrown when parsing fails.
    */
   private TextBlockCommandNode parseTextBlock(String line) throws LabelScriptEngineException {
 
@@ -208,10 +222,11 @@ public class LabelScriptParser {
   }
 
   /**
-   *
-   * @param line
-   * @return
-   * @throws LabelScriptEngineException
+   * Extracts font configuration values from a command line.
+   * 
+   * @param line The raw command line.
+   * @return The extracted font specification.
+   * @throws LabelScriptEngineException Thrown when parsing fails.
    */
   private FontSpec extractFont(String line) throws LabelScriptEngineException {
 
@@ -225,9 +240,11 @@ public class LabelScriptParser {
   }
 
   /**
-   * @param line
-   * @return
-   * @throws LabelScriptEngineException
+   * Parses a reverse-fill command.
+   * 
+   * @param line The raw command line.
+   * @return The parsed reverse command node.
+   * @throws LabelScriptEngineException Thrown when parsing fails.
    */
   private ReverseCommandNode parseReverse(String line) throws LabelScriptEngineException {
 
@@ -238,9 +255,11 @@ public class LabelScriptParser {
   }
 
   /**
-   * @param line
-   * @return
-   * @throws LabelScriptEngineException
+   * Parses an image command. Extracts the image name and render position.
+   * 
+   * @param line The raw command line.
+   * @return The parsed image command node.
+   * @throws LabelScriptEngineException Thrown when parsing fails.
    */
   private ImageCommandNode parseImage(String line) throws LabelScriptEngineException {
 
@@ -251,11 +270,12 @@ public class LabelScriptParser {
   }
 
   /**
-   * Parses a line command.
-   *
-   * @param line
-   * @return
-   * @throws LabelScriptEngineException
+   * Parses a line drawing command. Extracts start and end coordinates and line
+   * thickness.
+   * 
+   * @param line The raw command line.
+   * @return The parsed line command node.
+   * @throws LabelScriptEngineException Thrown when parsing fails.
    */
   private LineCommandNode parseLine(String line) throws LabelScriptEngineException {
 
@@ -264,7 +284,7 @@ public class LabelScriptParser {
 
     if (fromIdx == -1)
       throw new LabelScriptEngineException("Missing coordinates in '" + line + "'.");
-  
+
     if (toIdx == -1)
       throw new LabelScriptEngineException("Missing coordinates in '" + line + "'.");
 
@@ -277,9 +297,11 @@ public class LabelScriptParser {
   }
 
   /**
-   * @param line
-   * @return
-   * @throws LabelScriptEngineException
+   * Parses a text command. Extracts the text position and expression.
+   * 
+   * @param line The raw command line.
+   * @return The parsed text command node.
+   * @throws LabelScriptEngineException Thrown when parsing fails.
    */
   private TextCommandNode parseText(String line) throws LabelScriptEngineException {
 
@@ -290,9 +312,12 @@ public class LabelScriptParser {
   }
 
   /**
-   * @param line
-   * @return
-   * @throws LabelScriptEngineException
+   * Parses a barcode command. Extracts barcode type, dimensions, and expression
+   * data.
+   * 
+   * @param line The raw command line.
+   * @return The parsed barcode command node.
+   * @throws LabelScriptEngineException Thrown when parsing fails.
    */
   private BarcodeCommandNode parseBarcode(String line) throws LabelScriptEngineException {
 
@@ -307,9 +332,11 @@ public class LabelScriptParser {
   }
 
   /**
-   * @param line
-   * @return
-   * @throws LabelScriptEngineException
+   * Parses a QR code command. Extracts QR position, size, and expression data.
+   * 
+   * @param line The raw command line.
+   * @return The parsed QR code command node.
+   * @throws LabelScriptEngineException Thrown when parsing fails.
    */
   private QrCodeCommandNode parseQrCode(String line) throws LabelScriptEngineException {
 
@@ -323,9 +350,11 @@ public class LabelScriptParser {
   }
 
   /**
-   * @param line
-   * @return
-   * @throws LabelScriptEngineException
+   * Parses a box command. Extracts dimensions and border settings.
+   * 
+   * @param line The raw command line.
+   * @return The parsed box command node.
+   * @throws LabelScriptEngineException Thrown when parsing fails.
    */
   private BoxCommandNode parseBox(String line) throws LabelScriptEngineException {
 
@@ -337,9 +366,12 @@ public class LabelScriptParser {
   }
 
   /**
-   * @param line
-   * @return
-   * @throws LabelScriptEngineException
+   * Parses the label size directive. Extracts width, height, and optional DPI
+   * values.
+   * 
+   * @param line The raw directive line.
+   * @return The parsed size configuration.
+   * @throws LabelScriptEngineException Thrown when parsing fails.
    */
   private int[] parseLabelSize(String line) throws LabelScriptEngineException {
     try {
@@ -349,7 +381,8 @@ public class LabelScriptParser {
 
       final int width = Integer.parseInt(dims[0]);
       final int height = Integer.parseInt(dims[1]);
-      final int dpi = (parts.length >= 4 && parts[2].equalsIgnoreCase("dpi")) ? Integer.parseInt(parts[3]) : DEFAULT_DPI;
+      final int dpi = (parts.length >= 4 && parts[2].equalsIgnoreCase("dpi")) ? Integer.parseInt(parts[3])
+          : DEFAULT_DPI;
 
       return new int[] { width, height, dpi };
     } catch (Exception exception) {
@@ -358,9 +391,11 @@ public class LabelScriptParser {
   }
 
   /**
-   * @param raw
-   * @return
-   * @throws LabelScriptEngineException
+   * Parses a conditional expression. Supports binary comparison operators.
+   * 
+   * @param raw The raw condition string.
+   * @return The parsed expression node.
+   * @throws LabelScriptEngineException Thrown when parsing fails.
    */
   private ExpressionNode parseCondition(String raw) throws LabelScriptEngineException {
 
@@ -393,8 +428,10 @@ public class LabelScriptParser {
   }
 
   /**
-   * @param token
-   * @return
+   * Parses a single expression token. Supports literals and variable references.
+   * 
+   * @param token The raw expression token.
+   * @return The parsed expression node.
    */
   private ExpressionNode parseExpression(String token) {
 
@@ -410,10 +447,12 @@ public class LabelScriptParser {
   }
 
   /**
+   * Extracts a full expression region from a command line. Supports concatenated
+   * expressions.
    * 
-   * @param line
-   * @return
-   * @throws LabelScriptEngineException
+   * @param line The raw command line.
+   * @return The parsed expression node.
+   * @throws LabelScriptEngineException Thrown when parsing fails.
    */
   private ExpressionNode extractExpression(String line) throws LabelScriptEngineException {
 
@@ -425,19 +464,21 @@ public class LabelScriptParser {
     }
 
     final List<ExpressionNode> parts = new ArrayList<>();
-    
+
     for (String token : tokens) {
       parts.add(parseSingleExpression(token.trim()));
     }
-    
+
     return new ConcatExpression(parts);
   }
 
   /**
+   * Extracts the raw expression region from a command line. Stops parsing before
+   * command modifiers and attributes.
    * 
-   * @param line
-   * @return
-   * @throws LabelScriptEngineException
+   * @param line The raw command line.
+   * @return The extracted expression region.
+   * @throws LabelScriptEngineException Thrown when parsing fails.
    */
   private String extractExpressionRegion(String line) throws LabelScriptEngineException {
 
@@ -445,7 +486,7 @@ public class LabelScriptParser {
     final int varStart = line.indexOf("${");
 
     int expressionStart = -1;
-    
+
     if (quoteStart != -1 && varStart != -1) {
       expressionStart = Math.min(quoteStart, varStart);
     } else if (quoteStart != -1) {
@@ -457,16 +498,15 @@ public class LabelScriptParser {
     if (expressionStart == -1)
       throw new LabelScriptEngineException("Expected string or variable in '" + line + "'.");
 
-    final String[] keywords = { 
-        " width ", " lines ", " align ", " height ", " size ", " font ", " thickness ", " human", " ecc ", " border "
-    };
+    final String[] keywords = { " width ", " lines ", " align ", " height ", " size ", " font ", " thickness ",
+        " human", " ecc ", " border " };
 
     int expressionEnd = line.length();
-    
+
     for (String keyword : keywords) {
-      
+
       final int idx = line.indexOf(keyword, expressionStart);
-      
+
       if (idx != -1 && idx < expressionEnd)
         expressionEnd = idx;
     }
@@ -475,7 +515,12 @@ public class LabelScriptParser {
   }
 
   /**
-   * Parses a single expression token.
+   * Parses a single expression token. Supports string literals and variable
+   * references.
+   * 
+   * @param token The raw expression token.
+   * @return The parsed expression node.
+   * @throws LabelScriptEngineException Thrown when parsing fails.
    */
   private ExpressionNode parseSingleExpression(String token) throws LabelScriptEngineException {
 
@@ -492,11 +537,12 @@ public class LabelScriptParser {
   }
 
   /**
-   * Extracts a coordinate point from a line.
-   *
-   * @param line
-   * @return
-   * @throws LabelScriptEngineException
+   * Extracts a position from a command line. Looks for coordinates following the
+   * 'at' keyword.
+   * 
+   * @param line The raw command line.
+   * @return The extracted position.
+   * @throws LabelScriptEngineException Thrown when coordinates are invalid.
    */
   private Position extractPosition(String line) throws LabelScriptEngineException {
 
@@ -509,11 +555,13 @@ public class LabelScriptParser {
   }
 
   /**
+   * Extracts coordinate values from a command line. Parses coordinates in point
+   * format.
    * 
-   * @param line
-   * @param searchFrom
-   * @return
-   * @throws LabelScriptEngineException
+   * @param line       The raw command line.
+   * @param searchFrom The index to begin searching from.
+   * @return The extracted position.
+   * @throws LabelScriptEngineException Thrown when coordinates are invalid.
    */
   private Position extractCoordinates(String line, int searchFrom) throws LabelScriptEngineException {
 
@@ -536,10 +584,12 @@ public class LabelScriptParser {
   }
 
   /**
+   * Extracts a size definition from a command line. Parses dimensions in width
+   * and height format.
    * 
-   * @param line
-   * @return
-   * @throws LabelScriptEngineException
+   * @param line The raw command line.
+   * @return The extracted size.
+   * @throws LabelScriptEngineException Thrown when dimensions are invalid.
    */
   private Size extractSize(String line) throws LabelScriptEngineException {
 
@@ -567,10 +617,12 @@ public class LabelScriptParser {
   }
 
   /**
+   * Extracts the barcode type from a command line. Supports Code128, Code39, and
+   * EAN13 formats.
    * 
-   * @param line
-   * @return
-   * @throws LabelScriptEngineException
+   * @param line The raw command line.
+   * @return The extracted barcode type.
+   * @throws LabelScriptEngineException Thrown when the barcode type is unknown.
    */
   private BarcodeType extractBarcodeType(String line) throws LabelScriptEngineException {
 
@@ -587,13 +639,14 @@ public class LabelScriptParser {
   }
 
   /**
-   * Extracts an integer value that follows the given keyword on the line.
+   * Extracts an integer value following a keyword. Returns the default value if
+   * the keyword is missing.
    * 
-   * @param line
-   * @param key
-   * @param defaultValue
-   * @return
-   * @throws LabelScriptEngineException
+   * @param line         The raw command line.
+   * @param key          The keyword to search for.
+   * @param defaultValue The fallback value.
+   * @return The extracted integer value.
+   * @throws LabelScriptEngineException Thrown when the value is invalid.
    */
   private int extractIntAfter(String line, String key, int defaultValue) throws LabelScriptEngineException {
 
@@ -617,8 +670,10 @@ public class LabelScriptParser {
   }
 
   /**
-   * @param expected
-   * @throws LabelScriptEngineException
+   * Validates the next line against an expected token.
+   * 
+   * @param expected The expected line value.
+   * @throws LabelScriptEngineException Thrown when the value does not match.
    */
   private void expect(String expected) throws LabelScriptEngineException {
 
@@ -630,9 +685,11 @@ public class LabelScriptParser {
   }
 
   /**
-   * @param line
-   * @return
-   * @throws LabelScriptEngineException
+   * Extracts a quoted string from a command line.
+   * 
+   * @param line The raw command line.
+   * @return The extracted string value.
+   * @throws LabelScriptEngineException Thrown when quotes are missing.
    */
   private String extractQuotedString(String line) throws LabelScriptEngineException {
 
@@ -647,10 +704,13 @@ public class LabelScriptParser {
   }
 
   /**
-   * @param line
-   * @param key
-   * @param defaultValue
-   * @return
+   * Extracts a string value following a keyword. Returns the default value if the
+   * keyword is missing.
+   * 
+   * @param line         The raw command line.
+   * @param key          The keyword to search for.
+   * @param defaultValue The fallback value.
+   * @return The extracted string value.
    */
   private String extractStringAfter(String line, String key, String defaultValue) {
 
@@ -671,21 +731,27 @@ public class LabelScriptParser {
   }
 
   /**
-   * @return
+   * Returns whether more lines remain to be parsed.
+   * 
+   * @return True if more lines exist.
    */
   private boolean hasMore() {
     return index < lines.size();
   }
 
   /**
-   * @return
+   * Returns the current line without advancing the cursor.
+   * 
+   * @return The current line.
    */
   private String peek() {
     return lines.get(index);
   }
 
   /**
-   * @return
+   * Returns the current line and advances the cursor.
+   * 
+   * @return The next line.
    */
   private String next() {
     return lines.get(index++);
