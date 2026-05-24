@@ -9,19 +9,19 @@ import com.ls.api.model.PrintType;
 public interface Transpiler {
 
   /**
-   * Returns the {@link PrintType} for this implementation.
+   * Returns the {@link PrintType} supported by this translation.
    * 
-   * @return The returned type.
+   * @return The supported type.
    */
   PrintType getType();
 
   /**
+   * Translates a parsed document into printer-specific output.
    * 
-   * @param document
-   * @param data
+   * @param document The parsed document node.
+   * @param data     The runtime variable data.
    * @return The translated script content.
-   * @throws LabelScriptEngineException The exception thrown if an error is
-   *                                    encountered within the engine.
+   * @throws LabelScriptEngineException The exception thrown when translation fails.
    */
   String transpile(DocumentNode document, Map<String, Object> data) throws LabelScriptEngineException;
 }

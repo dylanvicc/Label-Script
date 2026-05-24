@@ -19,11 +19,11 @@ public enum PrintType {
 
   @JsonCreator
   public static PrintType from(String raw) {
-      for (PrintType type : values()) {
-          if (type.name.equalsIgnoreCase(raw)) {
-              return type;
-          }
+    for (PrintType type : values()) {
+      if (type.name.equalsIgnoreCase(raw)) {
+        return type;
       }
-      throw new IllegalArgumentException("Unknown printer type '" + raw + "'.");
+    }
+    throw new IllegalArgumentException("Unknown printer type '" + raw + "'.");
   }
 }
