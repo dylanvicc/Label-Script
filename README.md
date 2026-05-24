@@ -1,7 +1,10 @@
 # Label Script
-A domain specific language that transpiles human readable commands into printer recognized languages.
+A hand rolled domain-specific-language to bring human readable commands to the painful world of printer recognized languages.
+Supports conditional checks, concatenation, and transpilation of intake variables. Free to use and to modify.
 
-# Example
+This application stands up as a middleware between a user and a printer. It then intakes a custom request with variables and label script code, as well as the target destination. Currently supports fire and forget to network and mobile printers.
+
+# Example Script
 ```
 label 800x600 dpi 203
 
@@ -18,21 +21,13 @@ else
 }
 ```
 
-# Request
+# Example Request
 ```
 {
   "script": "...",
   "data": {
-    "shipment": {
-      "service": "OVERNIGHT",
-      "trackingNumber": "1Z999AA10123456784",
-      "fragile": "true",
-      "date": "2026-05-24"
-    },
-    "recipient": {
-      "name": "Acme Corporation",
-      "address": "123 Main St",
-      "city": "Dallas TX 75201"
+    "product": {
+      "name": "Fishing Rod"
     }
   },
   "printer": {
